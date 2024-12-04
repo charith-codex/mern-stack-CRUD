@@ -1,11 +1,25 @@
 'use client';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button } from 'flowbite-react';
+import axios from 'axios';
 
 const User = () => {
+  const [users, setUsers] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('http://localhost:8000/api/users');
+        setUsers(response.data);
+      } catch (error) {
+        console.log('error while fetching data', error);
+      }
+    };
+    fetchData();
+  }, []);
+
   return (
     <>
-      <div className=' m-10 shadow-lg'>
+      <div className=" m-10 shadow-lg">
         <div className="flex flex-wrap gap-2 mb-5">
           <Button>Add User</Button>
         </div>
@@ -21,20 +35,26 @@ const User = () => {
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200 bg-white">
-              <tr className="hover:bg-gray-100 transition-colors">
-                <td className="px-6 py-4 font-medium text-gray-900">001</td>
-                <td className="px-6 py-4">Silver</td>
-                <td className="px-6 py-4">abz@mail.com</td>
-                <td className="px-6 py-4">Kandy</td>
-                <td className="flex gap-3 px-6 py-4 ">
-                  <button className="text-green-500 hover:underline font-medium">
-                    Update
-                  </button>
-                  <button className="text-red-500 hover:underline font-medium">
-                    Delete
-                  </button>
-                </td>
-              </tr>
+              {users.map((user, index) => {
+                return (
+                  <tr className="hover:bg-gray-100 transition-colors">
+                    <td className="px-6 py-4 font-medium text-gray-900">
+                      {index + 1}
+                    </td>
+                    <td className="px-6 py-4">{user.name}</td>
+                    <td className="px-6 py-4">{user.email}</td>
+                    <td className="px-6 py-4">{user.address}</td>
+                    <td className="flex gap-3 px-6 py-4 ">
+                      <button className="text-green-500 hover:underline font-medium">
+                        Update
+                      </button>
+                      <button className="text-red-500 hover:underline font-medium">
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         </div>
