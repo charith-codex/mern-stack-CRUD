@@ -1,7 +1,7 @@
-'use client';
 import React, { useEffect, useState } from 'react';
 import { Button } from 'flowbite-react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const User = () => {
   const [users, setUsers] = useState([]);
@@ -21,7 +21,12 @@ const User = () => {
     <>
       <div className=" m-10 shadow-lg">
         <div className="flex flex-wrap gap-2 mb-5">
-          <Button>Add User</Button>
+          <Link
+            to="/add"
+            className="bg-sky-400 py-3 px-5 rounded-lg font-semibold text-gray-700"
+          >
+            Add User
+          </Link>
         </div>
         <div className="overflow-x-auto rounded-lg">
           <table className="w-full text-left text-sm text-gray-600 border-collapse">
