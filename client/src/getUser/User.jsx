@@ -50,9 +50,9 @@ const User = () => {
                     <td className="px-6 py-4">{user.email}</td>
                     <td className="px-6 py-4">{user.address}</td>
                     <td className="flex gap-3 px-6 py-4 ">
-                      <button className="text-green-500 hover:underline font-medium">
+                      <Link to={`/update/` + user._id} className="text-green-500 hover:underline font-medium">
                         Update
-                      </button>
+                      </Link>
                       <button className="text-red-500 hover:underline font-medium">
                         Delete
                       </button>
