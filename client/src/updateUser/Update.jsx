@@ -47,7 +47,10 @@ const UpdateUser = () => {
       <div className="bg-white shadow-lg rounded-lg p-8 w-full max-w-md">
         <div className="flex justify-between items-center mb-6">
           <h1 className="text-xl font-semibold">Update User</h1>
-          <button className="text-gray-500 hover:text-gray-700 focus:outline-none">
+          <button
+            onClick={() => navigate('/')}
+            className="text-gray-500 hover:text-gray-700 focus:outline-none"
+          >
             Back
           </button>
         </div>
